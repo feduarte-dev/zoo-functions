@@ -54,4 +54,16 @@ describe('Testes da função getOpeningHours', () => {
       'The minutes should represent a number',
     );
   });
+
+  it('Para os argumentos Sunday e 35:00-AM deve lançar uma exceção com a mensagem: The hour must be between 0 and 12', () => {
+    expect(() => getOpeningHours('Sunday', '35:00-AM')).toThrow(
+      'The hour must be between 0 and 12',
+    );
+  });
+
+  it('Para os argumentos Sunday e 09:150-AM deve lançar uma exceção com a mensagem: The minutes must be between 0 and 59', () => {
+    expect(() => getOpeningHours('Sunday', '09:150-AM')).toThrow(
+      'The minutes must be between 0 and 59',
+    );
+  });
 });
