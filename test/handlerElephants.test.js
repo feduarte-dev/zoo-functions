@@ -36,7 +36,7 @@ describe('Testes da função HandlerElephants', () => {
     const expected = 'Monday';
     expect(actual).not.toContain(expected);
   });
-  
+
   it('Não passando argumentos a função deve retornar undefined', () => {
     const actual = handlerElephants();
     const expected = undefined;
