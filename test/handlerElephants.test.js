@@ -24,19 +24,34 @@ describe('Testes da função HandlerElephants', () => {
     const expected = 'NW';
     expect(actual).toEqual(expected);
   });
+
   it('Para o argumento popularity deve retornar um número igual ou maior a 5', () => {
     const actual = handlerElephants('popularity');
     const expected = 5;
     expect(actual).toBeGreaterThanOrEqual(expected);
   });
+
   it('Para o argumento availability deve retornar um array de dias da semana que não contém Monday', () => {
     const actual = handlerElephants('availability');
     const expected = 'Monday';
     expect(actual).not.toContain(expected);
   });
+  
   it('Não passando argumentos a função deve retornar undefined', () => {
     const actual = handlerElephants();
     const expected = undefined;
+    expect(actual).toEqual(expected);
+  });
+
+  it('Passando por argumento um objeto vazio ({}) deve retornar a string Parâmetro inválido, é necessário uma string', () => {
+    const actual = handlerElephants({});
+    const expected = 'Parâmetro inválido, é necessário uma string';
+    expect(actual).toEqual(expected);
+  });
+
+  it('Passada uma string que não contempla uma funcionalidade deve retornar null', () => {
+    const actual = handlerElephants('tryber');
+    const expected = null;
     expect(actual).toEqual(expected);
   });
 });
