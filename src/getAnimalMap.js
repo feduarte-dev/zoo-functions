@@ -10,16 +10,24 @@ const noOption = () => {
   return map;
 };
 
-const getAnimalMap = (options) => {
-  if (
-    !options
-    || options.includeNames === false
-    || options.sorted === false
-    || options.sex
-  ) {
-    return noOption();
-  }
+const includeNamesFunction = () => {
+  Object.keys(map).forEach((location) =>
+    data.species
+      .filter((specie) => specie.location === location)
+      .map((animal) => map[location].push({
+        [animal.name]: animal.residents.map(
+          (animalNames) => animalNames.name,
+        ),
+      }))); return map;
 };
 
-console.log(getAnimalMap({ sex: 'female', sorted: true }));
+const getAnimalMap = (options) => {
+  if (!options) {
+    return noOption();
+  }
+  if (options.includeNames === true) {
+    return includeNamesFunction();
+  }
+};
+console.log(getAnimalMap({ includeNames: true }));
 module.exports = getAnimalMap;
